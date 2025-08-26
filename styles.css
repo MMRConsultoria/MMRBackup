@@ -1,0 +1,39 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #333;
+}
+header {
+  background-color: #f4f4f4;
+  padding: 20px;
+  text-align: center;
+}
+.logo {
+  max-height: 80px;
+}
+.hero {
+  padding: 60px 20px;
+  background-color: #e0f7fa;
+  text-align: center;
+}
+.botao {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007acc;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+section {
+  padding: 40px 20px;
+}
+footer {
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
