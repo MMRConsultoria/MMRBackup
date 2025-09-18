@@ -86,7 +86,7 @@
     );
  
     if (autorizado) {
-      const url = `https://backupgf4-wufbz7wchlnuqwfejjee7p.streamlit.app/Acesso?codigo=${encodeURIComponent(codigo)}&empresa=${encodeURIComponent(empresa)}`;
+      const url = `https://SEU-APP.streamlit.app/?page=Acesso&codigo=${encodeURIComponent(codigo)}&empresa=${encodeURIComponent(empresa)}`;
       window.location.href = url;
     } else {
       erro.textContent = "❌ Código ou nome da empresa inválido.";
