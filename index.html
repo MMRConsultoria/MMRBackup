@@ -67,27 +67,27 @@
 </div>
 
 <script>
-  const usuariosAutorizados = [
-    { codigo: "1825", empresa: "grupofit" },
-    { codigo: "3377", empresa: "rossi" },
-    { codigo: "0041", empresa: "consultoria" }
-  ];
-
   function validarLogin() {
-    const codigo = document.getElementById("codigo").value.trim();
+    const codigo  = document.getElementById("codigo").value.trim();
     const empresa = document.getElementById("empresa").value.trim().toLowerCase();
-    const erro = document.getElementById("erro");
+    const erro    = document.getElementById("erro");
 
-    console.log("Digitado:", codigo, empresa);
-    console.log("Comparando com:", usuariosAutorizados);
+    const usuariosAutorizados = [
+      { codigo: "1825", empresa: "grupofit" },
+      { codigo: "3377", empresa: "rossi" },
+      { codigo: "0041", empresa: "consultoria" }
+    ];
 
     const autorizado = usuariosAutorizados.some(
       u => u.codigo === codigo && u.empresa === empresa
     );
- 
+
     if (autorizado) {
-      const url = `https://SEU-APP.streamlit.app/?page=Acesso&codigo=${encodeURIComponent(codigo)}&empresa=${encodeURIComponent(empresa)}`;
-      window.location.href = url;
+      const APP = "https://backupgf4-wufbz7wchlnuqwfejjee7p.streamlit.app"; // ← troque pelo seu se for diferente
+      const qs  = new URLSearchParams({ page: "Acesso", codigo, empresa });
+      // rota recomendada (compatível): ?page=Acesso
+      window.location.href = `${APP}/?${qs.toString()}`;
+      // alternativa (se preferir): `${APP}/Acesso?${new URLSearchParams({codigo, empresa})}`
     } else {
       erro.textContent = "❌ Código ou nome da empresa inválido.";
     }
