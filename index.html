@@ -2,115 +2,77 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>MMR Consultoria - Login</title>
+  <title>MMR Consultoria</title>
   <link rel="icon" href="logo-mmr.png">
 
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f2f2f2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
-      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
     }
 
-    .container {
-      background: #fff;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    /* Topo */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      max-width: 400px;
+      height: 60px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 1000;
+    }
+
+    .btn-entrar {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-entrar:hover {
+      background: #45a049;
+    }
+
+    /* Conteúdo */
+    .content {
+      margin-top: 100px;
+      text-align: center;
+      padding: 40px;
     }
 
     .logo {
       height: 140px;
       margin-bottom: 20px;
     }
-
-    input {
-      padding: 12px;
-      margin-top: 12px;
-      font-size: 16px;
-      width: 100%;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 12px 20px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: none;
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    .error {
-      color: red;
-      margin-top: 12px;
-      font-weight: bold;
-    }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <img src="logo-mmr.png" alt="MMR Consultoria" class="logo">
+  <!-- Cabeçalho -->
+  <div class="header">
+    <button class="btn-entrar" onclick="entrar()">Entrar</button>
+  </div>
 
-    <h2>Acesso ao Portal de Relatórios</h2>
-
-    <input type="text" id="codigo" placeholder="Código da empresa">
-    <input type="text" id="empresa" placeholder="Nome da empresa">
-
-    <button onclick="validarLogin()">Acessar o Portal</button>
-
-    <div class="error" id="erro"></div>
+  <!-- Conteúdo -->
+  <div class="content">
+    <img src="logo-mmr.png" class="logo" alt="MMR Consultoria">
+    <h1>Portal de Relatórios</h1>
+    <p>Plataforma de inteligência e relatórios empresariais.</p>
   </div>
 
   <script>
-    // ⚠️ Validação simples (frontend)
-    const usuariosAutorizados = [
-      { codigo: "1825", empresa: "grupofit" },
-      { codigo: "3377", empresa: "rossi" },
-      { codigo: "0041", empresa: "consultoria" }
-    ];
-
-    function validarLogin() {
-      const codigo = document.getElementById("codigo").value.trim();
-      const empresa = document.getElementById("empresa").value.trim().toLowerCase();
-      const erro = document.getElementById("erro");
-
-      erro.textContent = "";
-
-      if (!codigo || !empresa) {
-        erro.textContent = "⚠️ Preencha todos os campos.";
-        return;
-      }
-
-      const autorizado = usuariosAutorizados.some(
-        u => u.codigo === codigo && u.empresa === empresa
-      );
-
-      if (autorizado) {
-        // ✅ DIGITALOCEAN (URL CORRETA)
-        const url = `https://sea-turtle-app-hni22.ondigitalocean.app/?codigo=${encodeURIComponent(codigo)}&empresa=${encodeURIComponent(empresa)}`;
-        window.location.href = url;
-      } else {
-        erro.textContent = "❌ Código ou nome da empresa inválido.";
-      }
+    function entrar() {
+      // 🔧 depois você pode trocar para tela de escolha de cliente
+      window.location.href = "https://mmr-grupofit.ondigitalocean.app";
     }
   </script>
 
