@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>MMR Consultoria - Login</title>
   <link rel="icon" href="logo-mmr.png">
+
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,80 +17,102 @@
       margin: 0;
       text-align: center;
     }
+
     .container {
       background: #fff;
       padding: 40px;
       border-radius: 16px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
     }
+
     .logo {
       height: 140px;
       margin-bottom: 20px;
     }
+
     input {
-      padding: 10px;
-      margin-top: 10px;
+      padding: 12px;
+      margin-top: 12px;
       font-size: 16px;
       width: 100%;
-      max-width: 300px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
     }
+
     button {
       margin-top: 20px;
-      padding: 10px 20px;
+      padding: 12px 20px;
       font-size: 16px;
       border-radius: 10px;
       border: none;
       background-color: #4CAF50;
       color: white;
       cursor: pointer;
+      width: 100%;
     }
+
     button:hover {
       background-color: #45a049;
     }
+
     .error {
       color: red;
-      margin-top: 10px;
+      margin-top: 12px;
+      font-weight: bold;
     }
   </style>
 </head>
+
 <body>
 
-<div class="container">
-  <img src="logo-mmr.png" alt="MMR Consultoria" class="logo">
-  <h2>Acesso ao Portal de Relatórios</h2>
+  <div class="container">
+    <img src="logo-mmr.png" alt="MMR Consultoria" class="logo">
 
-  <input type="text" id="codigo" placeholder="Código da empresa"><br>
-  <input type="text" id="empresa" placeholder="Nome da empresa"><br>
+    <h2>Acesso ao Portal de Relatórios</h2>
 
-  <button onclick="validarLogin()">Acessar o Portal</button>
+    <input type="text" id="codigo" placeholder="Código da empresa">
+    <input type="text" id="empresa" placeholder="Nome da empresa">
 
-  <div class="error" id="erro"></div>
-</div>
+    <button onclick="validarLogin()">Acessar o Portal</button>
 
-<script>
-  const usuariosAutorizados = [
-    { codigo: "1825", empresa: "grupofit" },
-    { codigo: "3377", empresa: "rossi" },
-    { codigo: "0041", empresa: "consultoria" }
-  ];
+    <div class="error" id="erro"></div>
+  </div>
 
-  function validarLogin() {
-    const codigo = document.getElementById("codigo").value.trim();
-    const empresa = document.getElementById("empresa").value.trim().toLowerCase();
-    const erro = document.getElementById("erro");
+  <script>
+    // ⚠️ Validação simples (frontend)
+    const usuariosAutorizados = [
+      { codigo: "1825", empresa: "grupofit" },
+      { codigo: "3377", empresa: "rossi" },
+      { codigo: "0041", empresa: "consultoria" }
+    ];
 
-    console.log("Digitado:", codigo, empresa);
-    console.log("Comparando com:", usuariosAutorizados);
+    function validarLogin() {
+      const codigo = document.getElementById("codigo").value.trim();
+      const empresa = document.getElementById("empresa").value.trim().toLowerCase();
+      const erro = document.getElementById("erro");
 
-    const autorizado = usuariosAutorizados.some(
-      u => u.codigo === codigo && u.empresa === empresa
-    );
- 
-    if (autorizado) {
-      const url = `https://backupgf4-wufbz7wchlnuqwfejjee7p.streamlit.app/Login?codigo=${encodeURIComponent(codigo)}&empresa=${encodeURIComponent(empresa)}`;
-      window.location.href = url;
-    } else {
-      erro.textContent = "❌ Código ou nome da empresa inválido.";
+      erro.textContent = "";
+
+      if (!codigo || !empresa) {
+        erro.textContent = "⚠️ Preencha todos os campos.";
+        return;
+      }
+
+      const autorizado = usuariosAutorizados.some(
+        u => u.codigo === codigo && u.empresa === empresa
+      );
+
+      if (autorizado) {
+        // ✅ DIGITALOCEAN (URL CORRETA)
+        const url = `https://sea-turtle-app-hni22.ondigitalocean.app/Login?codigo=${encodeURIComponent(codigo)}&empresa=${encodeURIComponent(empresa)}`;
+        window.location.href = url;
+      } else {
+        erro.textContent = "❌ Código ou nome da empresa inválido.";
+      }
     }
-  }
-</script>
+  </script>
+
+</body>
+</html>
