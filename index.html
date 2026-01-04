@@ -106,7 +106,7 @@
 
       if (autorizado) {
         // ✅ DIGITALOCEAN (URL CORRETA)
-        const url = `https://sea-turtle-app-hni22.ondigitalocean.app/Login?codigo=${encodeURIComponent(codigo)}&empresa=${encodeURIComponent(empresa)}`;
+        const url = `https://sea-turtle-app-hni22.ondigitalocean.app/?codigo=${encodeURIComponent(codigo)}&empresa=${encodeURIComponent(empresa)}`;
         window.location.href = url;
       } else {
         erro.textContent = "❌ Código ou nome da empresa inválido.";
